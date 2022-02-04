@@ -9,7 +9,9 @@ import { NgForm } from '@angular/forms';
 export class AppComponent {
   title = 'app01';
 
-  onSubmit(form: NgForm) {
-    console.log(form);
+  @ViewChild('formDisplay') formSignup: NgForm | undefined;
+
+  onSubmit() {
+    console.log(this.formSignup);
   }
 }
