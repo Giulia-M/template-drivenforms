@@ -5,7 +5,18 @@
         <div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" ngModel name="email" />
+            <input
+              type="email"
+              id="email"
+              ngModel
+              name="email"
+              required
+              email
+              #email="ngModel"
+            />
+            <p *ngIf="email.invalid && email.touched">
+              please enter a valid value
+            </p>
           </div>
         </div>
 
@@ -25,10 +36,26 @@
 
         <div class="form-group">
           <label for="pasword">password</label>
-          <input type="password" id="password" ngModel name="password" />
+          <input
+            type="password"
+            id="password"
+            ngModel
+            name="password"
+            required
+            #password="ngModel"
+          />
+          <p *ngIf="password.invalid && password.touched">
+            please enter a valid value
+          </p>
         </div>
 
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!formDisplay.valid"
+        >
+          Submit
+        </button>
       </form>
       <!-- Add a Form with the following Inputs (and Validators)
            1) Mail address (should not be empty and should be an email address)
