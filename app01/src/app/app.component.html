@@ -2,61 +2,70 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form (ngSubmit)="onSubmit()" #formDisplay="ngForm">
-        <div>
+        <div ngModelGroup="userData" #userData="ngModelGroup">
+          <div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                ngModel
+                name="email"
+                required
+                email
+                #email="ngModel"
+              />
+              <p *ngIf="email.invalid && email.touched">
+                please enter a valid email
+              </p>
+            </div>
+          </div>
+
+          <p *ngIf="userData.invalid">user data is invalid</p>
+
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="subscriptions">Choose Subscriptions</label>
+            <select
+              id="subscriptions"
+              class="form-control"
+              [ngModel]="defaultQuestion"
+              name="subscriptions"
+            >
+              <option value="basic">Basic</option>
+              <option value="advanced">Advanced</option>
+              <option value="pro">pro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="pasword">password</label>
             <input
-              type="email"
-              id="email"
+              type="password"
+              id="password"
               ngModel
-              name="email"
+              name="password"
               required
-              email
-              #email="ngModel"
+              #password="ngModel"
             />
-            <p *ngIf="email.invalid && email.touched">
-              please enter a valid value
+            <p *ngIf="password.invalid && password.touched">
+              please enter a valid password
             </p>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="subscriptions">Choose Subscriptions</label>
-          <select
-            id="subscriptions"
-            class="form-control"
-            ngModel
-            name="subscriptions"
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!formDisplay.valid"
           >
-            <option value="basic">Basic</option>
-            <option value="advanced">Advanced</option>
-            <option value="pro">pro</option>
-          </select>
+            Submit
+          </button>
         </div>
-
-        <div class="form-group">
-          <label for="pasword">password</label>
-          <input
-            type="password"
-            id="password"
-            ngModel
-            name="password"
-            required
-            #password="ngModel"
-          />
-          <p *ngIf="password.invalid && password.touched">
-            please enter a valid value
-          </p>
-        </div>
-
-        <button
-          class="btn btn-primary"
-          type="submit"
-          [disabled]="!formDisplay.valid"
-        >
-          Submit
-        </button>
       </form>
+      <div>
+        <p *ngIf="formDisplay.invalid && formDisplay.touched">
+          the Form is invalid
+        </p>
+      </div>
       <!-- Add a Form with the following Inputs (and Validators)
            1) Mail address (should not be empty and should be an email address)
            2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")

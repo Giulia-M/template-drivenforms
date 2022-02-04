@@ -8,7 +8,8 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
   title = 'app01';
-
+  defaultQuestion = 'advanced';
+  userData = '';
   @ViewChild('formDisplay') formSignup: NgForm | undefined;
 
   onSubmit() {
