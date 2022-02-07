@@ -13,6 +13,26 @@ export class AppComponent {
   @ViewChild('formDisplay') formSignup: NgForm | undefined;
 
   genders = ['male', 'female'];
+  suggestUserName() {
+    const suggestedName = 'Superuser';
+    /*
+    this.formSignup?.setValue({
+      userData: {
+        username: suggestedName,
+        email: '',
+        subscriptions: 'advanced',
+        password: '',
+        gender: 'male',
+      },
+    });
+    */
+
+    this.formSignup?.form.patchValue({
+      userData: {
+        username: suggestedName,
+      },
+    });
+  }
   onSubmit() {
     console.log(this.formSignup);
   }

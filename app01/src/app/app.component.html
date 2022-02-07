@@ -5,6 +5,24 @@
         <div ngModelGroup="userData" #userData="ngModelGroup">
           <div>
             <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                ngModel
+                name="username"
+                required
+                #username="ngModel"
+              />
+            </div>
+          </div>
+
+          <button type="button" (click)="suggestUserName()">
+            suggest an username
+          </button>
+
+          <div>
+            <div class="form-group">
               <label for="email">Email</label>
               <input
                 type="email"
