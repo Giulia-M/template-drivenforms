@@ -13,6 +13,15 @@ export class AppComponent {
   @ViewChild('formDisplay') formSignup: NgForm | undefined;
 
   genders = ['male', 'female'];
+
+  user = {
+    username: '',
+    email: '',
+    subscriptions: '',
+    password: '',
+    gender: '',
+  };
+  submitted = false;
   suggestUserName() {
     const suggestedName = 'Superuser';
     /*
@@ -34,6 +43,12 @@ export class AppComponent {
     });
   }
   onSubmit() {
-    console.log(this.formSignup);
+    // console.log(this.formSignup);
+    this.submitted = true;
+    this.user.username = this.formSignup?.value.userData.username;
+    this.user.email = this.formSignup?.value.userData.email;
+    this.user.subscriptions = this.formSignup?.value.userData.subscriptions;
+    this.user.gender = this.formSignup?.value.userData.gender;
+    this.formSignup?.reset();
   }
 }
