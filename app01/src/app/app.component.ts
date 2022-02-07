@@ -12,6 +12,7 @@ export class AppComponent {
   userData = '';
   @ViewChild('formDisplay') formSignup: NgForm | undefined;
 
+  genders = ['male', 'female'];
   onSubmit() {
     console.log(this.formSignup);
   }
